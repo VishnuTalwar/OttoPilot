@@ -1,0 +1,9 @@
+{
+    "dependencies": [
+        "."
+    ],
+    "graphs": {
+        "ovgu_chatbot": "./src/graph.py:create_chatbot_graph"
+    },
+    "env": ".env"
+}

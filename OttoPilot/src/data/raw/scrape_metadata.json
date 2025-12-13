@@ -1,0 +1,142 @@
+[
+  {
+    "filename": "Studium.html.txt",
+    "url": "https://www.ovgu.de/Studium.html",
+    "title": "Studium und Lehre",
+    "length": 1122,
+    "scraped_at": "2025-12-08T18:20:52.758699"
+  },
+  {
+    "filename": "Studium.html_1.txt",
+    "url": "https://www.ovgu.de/Studium.html#search-dialog",
+    "title": "Studium und Lehre",
+    "length": 1122,
+    "scraped_at": "2025-12-08T18:20:54.850393"
+  },
+  {
+    "filename": "studiendokumente.html.txt",
+    "url": "https://www.ovgu.de/studiendokumente.html",
+    "title": "Studiendokumente",
+    "length": 407,
+    "scraped_at": "2025-12-08T18:20:57.086484"
+  },
+  {
+    "filename": "homepage.txt",
+    "url": "https://www.ovgu.de/",
+    "title": "Otto-von-Guericke-Universit\u00e4t Magdeburg",
+    "length": 2350,
+    "scraped_at": "2025-12-08T18:20:59.493614"
+  },
+  {
+    "filename": "Studium.html_1_2.txt",
+    "url": "https://www.ovgu.de/Studium.html#top",
+    "title": "Studium und Lehre",
+    "length": 1122,
+    "scraped_at": "2025-12-08T18:21:01.584544"
+  },
+  {
+    "filename": "universitaet.html.txt",
+    "url": "https://www.ovgu.de/universitaet.html",
+    "title": "Universit\u00e4t",
+    "length": 639,
+    "scraped_at": "2025-12-08T18:21:03.651827"
+  },
+  {
+    "filename": "studium.html_1_2_3.txt",
+    "url": "https://www.ovgu.de/studium.html",
+    "title": "Studium und Lehre",
+    "length": 1122,
+    "scraped_at": "2025-12-08T18:21:05.736744"
+  },
+  {
+    "filename": "forschung.html.txt",
+    "url": "https://www.ovgu.de/forschung.html",
+    "title": "Forschung",
+    "length": 2403,
+    "scraped_at": "2025-12-08T18:21:08.112138"
+  },
+  {
+    "filename": "weiterbildungen.html.txt",
+    "url": "https://www.ovgu.de/weiterbildungen.html",
+    "title": "Weiterbildung",
+    "length": 1551,
+    "scraped_at": "2025-12-08T18:21:10.584698"
+  },
+  {
+    "filename": "international.html.txt",
+    "url": "https://www.ovgu.de/international.html",
+    "title": "International",
+    "length": 1914,
+    "scraped_at": "2025-12-08T18:21:13.007987"
+  },
+  {
+    "filename": "karriere.html.txt",
+    "url": "https://www.ovgu.de/karriere.html",
+    "title": "Karriere an der Universit\u00e4t Magdeburg",
+    "length": 3215,
+    "scraped_at": "2025-12-08T18:21:15.471984"
+  },
+  {
+    "filename": "studium-p-3.html.txt",
+    "url": "https://www.ovgu.de/studium-p-3.html",
+    "title": "Studium und Lehre",
+    "length": 1122,
+    "scraped_at": "2025-12-08T18:21:17.545866"
+  },
+  {
+    "filename": "studiengaenge.html.txt",
+    "url": "https://www.ovgu.de/studiengaenge.html",
+    "title": "Studieng\u00e4nge von A bis Z",
+    "length": 639,
+    "scraped_at": "2025-12-08T18:21:19.615466"
+  },
+  {
+    "filename": "Studium_Studienorganisation.html.txt",
+    "url": "https://www.ovgu.de/Studium/Studienorganisation.html",
+    "title": "Studienorganisation",
+    "length": 301,
+    "scraped_at": "2025-12-08T18:21:22.012070"
+  },
+  {
+    "filename": "studienstart.html.txt",
+    "url": "https://www.ovgu.de/studienstart.html",
+    "title": "Infos zum Studienstart",
+    "length": 1014,
+    "scraped_at": "2025-12-08T18:21:24.474961"
+  },
+  {
+    "filename": "Studium_Abschluss___Karriere-p-44642.html.txt",
+    "url": "https://www.ovgu.de/Studium/Abschluss+_+Karriere-p-44642.html",
+    "title": "Abschluss & Karriere",
+    "length": 252,
+    "scraped_at": "2025-12-08T18:21:26.827530"
+  },
+  {
+    "filename": "helfendehaende.html.txt",
+    "url": "https://www.ovgu.de/helfendehaende.html",
+    "title": "Beratung & Unterst\u00fctzung",
+    "length": 1207,
+    "scraped_at": "2025-12-08T18:21:29.286713"
+  },
+  {
+    "filename": "outgoing.html.txt",
+    "url": "https://www.ovgu.de/outgoing.html",
+    "title": "Studierende der OVGU",
+    "length": 3167,
+    "scraped_at": "2025-12-08T18:21:31.817846"
+  },
+  {
+    "filename": "Studium_Campus___Stadt-p-44746.html.txt",
+    "url": "https://www.ovgu.de/Studium/Campus+_+Stadt-p-44746.html",
+    "title": "Campus & Stadt",
+    "length": 1411,
+    "scraped_at": "2025-12-08T18:21:34.245685"
+  },
+  {
+    "filename": "Bachelorabsolventen.html.txt",
+    "url": "https://www.ovgu.de/Bachelorabsolventen.html",
+    "title": "Bachelorabsolventen",
+    "length": 966,
+    "scraped_at": "2025-12-08T18:21:36.758697"
+  }
+]

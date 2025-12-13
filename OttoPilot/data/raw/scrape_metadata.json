@@ -1,0 +1,65 @@
+[
+  {
+    "filename": "Universit\u00e4t_Fakult\u00e4ten.html_1.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten.html",
+    "title": "Fakult\u00e4ten",
+    "length": 479,
+    "scraped_at": "2025-12-08T18:20:07.258676"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Informatik.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Informatik.html",
+    "title": "Informatik",
+    "length": 1827,
+    "scraped_at": "2025-12-08T18:20:09.557252"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Maschinenbau.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Maschinenbau.html",
+    "title": "Maschinenbau",
+    "length": 1851,
+    "scraped_at": "2025-12-08T18:20:11.848150"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Elektrotechnik.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Elektrotechnik.html",
+    "title": "Sachgebiet Elektrotechnik",
+    "length": 528,
+    "scraped_at": "2025-12-08T18:20:14.129488"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Naturwissenschaften.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Naturwissenschaften.html",
+    "title": "Naturwissenschaften",
+    "length": 3163,
+    "scraped_at": "2025-12-08T18:20:16.478280"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Medizin.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Medizin.html",
+    "title": "Medizin",
+    "length": 4343,
+    "scraped_at": "2025-12-08T18:20:18.939138"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Wirtschaftswissenschaft.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Wirtschaftswissenschaft.html",
+    "title": "Wirtschaftswissenschaft",
+    "length": 2965,
+    "scraped_at": "2025-12-08T18:20:21.224080"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Humanwissenschaften.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Humanwissenschaften.html",
+    "title": "Humanwissenschaften",
+    "length": 2170,
+    "scraped_at": "2025-12-08T18:20:23.511156"
+  },
+  {
+    "filename": "Fakult\u00e4ten_Verfahrenstechnik.html.txt",
+    "url": "https://www.ovgu.de/Universit\u00e4t/Fakult\u00e4ten/Verfahrenstechnik.html",
+    "title": "Verfahrenstechnik",
+    "length": 2144,
+    "scraped_at": "2025-12-08T18:20:25.778062"
+  }
+]

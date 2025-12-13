@@ -1,0 +1,6 @@
+Title: Profil
+Source URL: https://www.ovgu.de/Universität/Profil.html
+Scraped: 2025-12-08T18:19:42.049590
+================================================================================
+
+Profil Data and Knowledge Engineering Information Retrieval Data Mining Textmining Multimedia Retrieval Cross-/Multilingual Retrieval Benutzermodellierung (User Modelling) User Profiling Semantic Grid Information Visualization
