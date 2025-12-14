@@ -1,6 +1,5 @@
 """
 OttoPilot - OVGU Chatbot
-Version with DIRECT sources display (no expander)
 """
 
 import streamlit as st
@@ -35,26 +34,15 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    /* Try multiple monospace fonts in order of preference */
+    /* Import fonts */
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
     
-    /* Apply font hierarchy */
-    html, body {
-        font-family: 'IBM Plex Mono', 'Roboto Mono', 'Space Mono', 'Courier New', 'Courier', monospace !important;
+    /* Apply font */
+    html, body, * {
+        font-family: 'IBM Plex Mono', 'Courier New', monospace !important;
     }
     
-    /* Force on all elements */
-    * {
-        font-family: 'IBM Plex Mono', 'Roboto Mono', 'Space Mono', 'Courier New', monospace !important;
-    }
-    
-    .stApp {
-        font-family: 'IBM Plex Mono', 'Roboto Mono', 'Space Mono', monospace !important;
-    }
-    
-    /* Hide Streamlit default elements */
+    /* Hide Streamlit elements */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
@@ -74,28 +62,34 @@ st.markdown("""
     /* Header */
     .otto-header {
         background: #FFFFFF;
-        padding: 2rem;
+        padding: 1.5rem 2rem;
         border-radius: 20px;
-        text-align: center;
-        margin-bottom: 2rem;
+        text-align: left;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
     }
     
     .otto-title {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 700;
         color: #7A003E;
         margin: 0;
         letter-spacing: -2px;
-        font-family: 'IBM Plex Mono', monospace !important;
+        line-height: 1.2;
     }
     
     .otto-subtitle {
         font-size: 0.9rem;
         color: #7A003E;
         opacity: 0.7;
-        margin-top: 0.5rem;
-        font-family: 'IBM Plex Mono', monospace !important;
+        margin-top: 0.25rem;
+    }
+    
+    /* Portrait styling */
+    [data-testid="column"] img {
+        border-radius: 50%;
+        border: 3px solid #7A003E;
+        box-shadow: 0 4px 15px rgba(122, 0, 62, 0.3);
     }
     
     /* Welcome card */
@@ -113,25 +107,18 @@ st.markdown("""
         margin: 0;
         font-size: 1.5rem;
         color: #FFFFFF;
-        font-family: 'IBM Plex Mono', monospace !important;
     }
     
     .welcome-card p {
         margin: 0.5rem 0 0 0;
         opacity: 0.9;
         color: #FFFFFF;
-        font-family: 'IBM Plex Mono', monospace !important;
     }
     
-    /* CHAT MESSAGES */
+    /* Chat messages */
     .stChatMessage {
         background: none !important;
         padding: 0.5rem 0 !important;
-    }
-    
-    .stChatMessage[data-testid="user-message"],
-    div[class*="user"] {
-        background: transparent !important;
     }
     
     .stChatMessage[data-testid="user-message"] [data-testid="stMarkdownContainer"],
@@ -142,20 +129,6 @@ st.markdown("""
         border-left: 4px solid #7A003E !important;
         color: #000000 !important;
         margin-bottom: 1rem !important;
-        font-family: 'IBM Plex Mono', monospace !important;
-    }
-    
-    .stChatMessage[data-testid="user-message"] p,
-    .stChatMessage[data-testid="user-message"] *,
-    div[class*="user"] p,
-    div[class*="user"] * {
-        color: #000000 !important;
-        font-family: 'IBM Plex Mono', monospace !important;
-    }
-    
-    .stChatMessage[data-testid="assistant-message"],
-    div[class*="assistant"] {
-        background: transparent !important;
     }
     
     .stChatMessage[data-testid="assistant-message"] [data-testid="stMarkdownContainer"],
@@ -166,24 +139,14 @@ st.markdown("""
         border-right: 4px solid #FFFFFF !important;
         color: #FFFFFF !important;
         margin-bottom: 1rem !important;
-        font-family: 'IBM Plex Mono', monospace !important;
-    }
-    
-    .stChatMessage[data-testid="assistant-message"] p,
-    .stChatMessage[data-testid="assistant-message"] *,
-    div[class*="assistant"] p,
-    div[class*="assistant"] * {
-        color: #FFFFFF !important;
-        font-family: 'IBM Plex Mono', monospace !important;
     }
     
     .stChatMessage p {
         font-size: 1rem !important;
         line-height: 1.6 !important;
-        font-family: 'IBM Plex Mono', monospace !important;
     }
     
-    /* Sources box - DIRECT DISPLAY (no expander) */
+    /* Sources box */
     .sources-box {
         background: #f8f9fa !important;
         border-left: 4px solid #7A003E !important;
@@ -196,12 +159,10 @@ st.markdown("""
         font-weight: 700 !important;
         color: #7A003E !important;
         margin-bottom: 0.5rem !important;
-        font-family: 'IBM Plex Mono', monospace !important;
     }
     
     .sources-list {
         color: #000000 !important;
-        font-family: 'IBM Plex Mono', monospace !important;
         font-size: 0.9rem !important;
     }
     
@@ -220,19 +181,12 @@ st.markdown("""
     }
     
     input, textarea {
-        font-family: 'IBM Plex Mono', 'Roboto Mono', 'Space Mono', monospace !important;
         color: #FFFFFF !important;
         background: #7A003E !important;
     }
     
     input::placeholder, textarea::placeholder {
         color: rgba(255, 255, 255, 0.6) !important;
-    }
-    
-    input:focus, textarea:focus {
-        color: #FFFFFF !important;
-        background: #7A003E !important;
-        border-color: #FFFFFF !important;
     }
     
     /* Buttons */
@@ -244,7 +198,6 @@ st.markdown("""
         padding: 0.5rem 2rem;
         font-weight: 700;
         transition: all 0.3s ease;
-        font-family: 'IBM Plex Mono', monospace !important;
     }
     
     .stButton > button:hover {
@@ -271,10 +224,6 @@ st.markdown("""
     ::-webkit-scrollbar-thumb:hover {
         background: #4a0025;
     }
-    
-    .stSpinner > div {
-        border-top-color: #7A003E !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -300,15 +249,24 @@ if "sources_history" not in st.session_state:
 
 
 # ============================================================================
-# Header
+# Header with Portrait
 # ============================================================================
 
-st.markdown("""
-<div class="otto-header">
-    <div class="otto-title">OttoPilot</div>
-    <div class="otto-subtitle">Powered by Gemini</div>
-</div>
-""", unsafe_allow_html=True)
+col_logo, col_title = st.columns([1, 4])
+
+with col_logo:
+    try:
+        st.image("assets/otto_portrait.jpg", width=120)
+    except:
+        st.markdown("# 🎓")
+
+with col_title:
+    st.markdown("""
+    <div class="otto-header">
+        <div class="otto-title">OttoPilot</div>
+        <div class="otto-subtitle">Powered by Gemini</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # ============================================================================
@@ -326,15 +284,13 @@ if not st.session_state.messages:
 
 
 # ============================================================================
-# Chat Interface - WITH DIRECT SOURCES DISPLAY
+# Chat Interface
 # ============================================================================
 
-# Display chat messages
 for i, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-        # Show sources DIRECTLY (no expander)
         if message["role"] == "assistant" and i < len(st.session_state.sources_history):
             sources = st.session_state.sources_history[i // 2]
             if sources:
@@ -349,7 +305,6 @@ for i, message in enumerate(st.session_state.messages):
                 st.markdown(sources_html, unsafe_allow_html=True)
 
 
-# Chat input
 if prompt := st.chat_input("Type your question here..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
@@ -361,7 +316,6 @@ if prompt := st.chat_input("Type your question here..."):
             try:
                 answer = st.session_state.chatbot.ask(prompt)
 
-                # Parse sources
                 sources = []
                 if "Sources:" in answer or "Quellen:" in answer:
                     parts = answer.split("\n\nSources:" if "Sources:" in answer else "\n\nQuellen:")
@@ -377,7 +331,6 @@ if prompt := st.chat_input("Type your question here..."):
 
                 st.markdown(main_answer)
 
-                # Show sources directly
                 if sources:
                     sources_html = f"""
                     <div class="sources-box">
@@ -411,3 +364,49 @@ if st.session_state.messages:
             st.session_state.sources_history = []
             st.session_state.chatbot.reset_conversation()
             st.rerun()
+
+
+# ============================================================================
+# Footer with Contact Information
+# ============================================================================
+
+st.markdown("---")
+
+st.markdown("""
+<div style='background: linear-gradient(135deg, #7A003E 0%, #4a0025 100%); 
+            padding: 2rem; 
+            border-radius: 15px; 
+            text-align: center; 
+            color: #FFFFFF;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);'>
+    
+    <p style='font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;'>
+        📧 Questions or Feedback?
+    </p>
+    
+    <p style='font-size: 1rem; margin: 0 0 1.5rem 0; opacity: 0.95;'>
+        Contact: <a href='mailto:vishnutalwar03@gmail.com' 
+                     style='color: #FFFFFF; text-decoration: underline; font-weight: 600;'>
+                     vishnutalwar03@gmail.com
+                  </a>
+    </p>
+    
+    <div style='border-top: 1px solid rgba(255,255,255,0.3); padding-top: 1rem; margin-top: 1rem;'>
+        <p style='font-size: 0.85rem; margin: 0 0 0.5rem 0; opacity: 0.8;'>
+            <strong>⚠️ Disclaimer:</strong> OttoPilot is an independent student project and is not officially affiliated with 
+            Otto-von-Guericke-Universität Magdeburg.
+        </p>
+        <p style='font-size: 0.85rem; margin: 0; opacity: 0.8;'>
+            This chatbot is developed for educational purposes. For official information, please visit 
+            <a href='https://www.ovgu.de' target='_blank' style='color: #FFFFFF; text-decoration: underline;'>
+                www.ovgu.de
+            </a>
+        </p>
+    </div>
+    
+    <p style='font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7; font-style: italic;'>
+        Developed by Vishnu Talwar | Powered by Google Gemini & LangChain
+    </p>
+</div>
+""", unsafe_allow_html=True)
