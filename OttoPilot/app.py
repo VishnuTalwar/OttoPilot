@@ -157,29 +157,50 @@ st.markdown("""
         padding: 0.5rem 0 !important;
     }
     
-    .stChatMessage[data-testid="user-message"] [data-testid="stMarkdownContainer"],
-    div[class*="user"] [data-testid="stMarkdownContainer"] {
+    /* User messages - Right aligned with flexbox */
+    .stChatMessage[data-testid="user-message"] {
+        display: flex !important;
+        flex-direction: row-reverse !important;
+        justify-content: flex-start !important;
+    }
+    
+    .stChatMessage[data-testid="user-message"] > div {
+        display: flex !important;
+        flex-direction: row-reverse !important;
+    }
+    
+    .stChatMessage[data-testid="user-message"] [data-testid="stMarkdownContainer"] {
+        background: #7A003E !important;
+        padding: 1.5rem !important;
+        border-radius: 15px 15px 5px 15px !important;
+        color: #FFFFFF !important;
+        margin-bottom: 1rem !important;
+        max-width: 70% !important;
+        text-align: left !important;
+    }
+    
+    /* Assistant messages - Left aligned */
+    .stChatMessage[data-testid="assistant-message"] {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+    }
+    
+    .stChatMessage[data-testid="assistant-message"] [data-testid="stMarkdownContainer"] {
         background: #f8f9fa !important;
         padding: 1.5rem !important;
-        border-radius: 15px !important;
+        border-radius: 15px 15px 15px 5px !important;
         border-left: 4px solid #7A003E !important;
         color: #000000 !important;
         margin-bottom: 1rem !important;
-    }
-    
-    .stChatMessage[data-testid="assistant-message"] [data-testid="stMarkdownContainer"],
-    div[class*="assistant"] [data-testid="stMarkdownContainer"] {
-        background: #7A003E !important;
-        padding: 1.5rem !important;
-        border-radius: 15px !important;
-        border-right: 4px solid #FFFFFF !important;
-        color: #FFFFFF !important;
-        margin-bottom: 1rem !important;
+        max-width: 70% !important;
+        text-align: left !important;
     }
     
     .stChatMessage p {
         font-size: 1rem !important;
         line-height: 1.6 !important;
+        margin: 0 !important;
     }
     
     /* Sources box */
@@ -322,7 +343,10 @@ if not st.session_state.messages:
 # ============================================================================
 
 for i, message in enumerate(st.session_state.messages):
-    with st.chat_message(message["role"]):
+    # Use custom avatars instead of default initials
+    avatar = "👤" if message["role"] == "user" else "🤖"
+
+    with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
 
         if message["role"] == "assistant" and i < len(st.session_state.sources_history):
@@ -342,10 +366,10 @@ for i, message in enumerate(st.session_state.messages):
 if prompt := st.chat_input("Type your question here..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="👤"):
         st.markdown(prompt)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="🤖"):
         with st.spinner("Thinking..."):
             try:
                 answer = st.session_state.chatbot.ask(prompt)
@@ -401,7 +425,7 @@ if st.session_state.messages:
 
 
 # ============================================================================
-# Footer 
+# Footer - Compact Bottom Right
 # ============================================================================
 
 st.markdown("---")
