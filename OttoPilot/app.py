@@ -5,6 +5,8 @@ OttoPilot - OVGU Chatbot
 import streamlit as st
 import sys
 from pathlib import Path
+import base64
+from io import BytesIO
 
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
@@ -14,6 +16,37 @@ except ImportError as e:
     st.error(f"Error importing chatbot: {e}")
     st.error("Make sure all required files are in the src/ directory")
     st.stop()
+
+
+# ============================================================================
+# Helper Functions
+# ============================================================================
+
+def get_portrait_base64():
+    """Get portrait image as base64 string"""
+    portrait_paths = [
+        "/Users/deepaktalwar/Desktop/OttoPilot/assets/otto_potrait.jpg",
+        "assets/otto_portrait.jpg",
+        "otto_portrait.jpg",
+        Path(__file__).parent / "assets" / "otto_portrait.jpg",
+        Path(__file__).parent / "otto_portrait.jpg"
+    ]
+
+    for path in portrait_paths:
+        try:
+            from PIL import Image
+            img = Image.open(path)
+            # Resize to ensure consistent size
+            img = img.resize((100, 100), Image.Resampling.LANCZOS)
+            buffered = BytesIO()
+            img.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            return img_str
+        except:
+            continue
+
+    # Fallback: return None if no image found
+    return None
 
 
 # ============================================================================
@@ -59,14 +92,47 @@ st.markdown("""
         max-width: 900px;
     }
     
-    /* Header */
+    /* Header - Updated for integrated portrait */
     .otto-header {
         background: #FFFFFF;
         padding: 1.5rem 2rem;
         border-radius: 20px;
-        text-align: left;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin-bottom: 2rem;
+    }
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .portrait-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid #7A003E;
+        object-fit: cover;
+        box-shadow: 0 4px 15px rgba(122, 0, 62, 0.3);
+        flex-shrink: 0;
+    }
+    
+    .portrait-placeholder {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #7A003E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid #7A003E;
+        box-shadow: 0 4px 15px rgba(122, 0, 62, 0.3);
+        font-size: 3rem;
+        flex-shrink: 0;
+    }
+    
+    .title-section {
+        flex: 1;
     }
     
     .otto-title {
@@ -83,13 +149,6 @@ st.markdown("""
         color: #7A003E;
         opacity: 0.7;
         margin-top: 0.25rem;
-    }
-    
-    /* Portrait styling */
-    [data-testid="column"] img {
-        border-radius: 50%;
-        border: 3px solid #7A003E;
-        box-shadow: 0 4px 15px rgba(122, 0, 62, 0.3);
     }
     
     /* Welcome card */
@@ -249,22 +308,35 @@ if "sources_history" not in st.session_state:
 
 
 # ============================================================================
-# Header with Portrait
+# Header with Integrated Portrait
 # ============================================================================
 
-col_logo, col_title = st.columns([1, 4])
+portrait_base64 = get_portrait_base64()
 
-with col_logo:
-    try:
-        st.image("assets/otto_portrait.jpg", width=120)
-    except:
-        st.markdown("# 🎓")
-
-with col_title:
+if portrait_base64:
+    # Portrait found - show integrated header with image
+    st.markdown(f"""
+    <div class="otto-header">
+        <div class="header-content">
+            <img src="data:image/jpeg;base64,{portrait_base64}" class="portrait-circle" alt="Otto von Guericke">
+            <div class="title-section">
+                <div class="otto-title">OttoPilot</div>
+                <div class="otto-subtitle">Powered by Gemini</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+else:
+    # No portrait - show header with placeholder
     st.markdown("""
     <div class="otto-header">
-        <div class="otto-title">OttoPilot</div>
-        <div class="otto-subtitle">Powered by Gemini</div>
+        <div class="header-content">
+            <div class="portrait-placeholder">🎓</div>
+            <div class="title-section">
+                <div class="otto-title">OttoPilot</div>
+                <div class="otto-subtitle">Powered by Gemini</div>
+            </div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -367,46 +439,13 @@ if st.session_state.messages:
 
 
 # ============================================================================
-# Footer with Contact Information
+# Footer - Compact Popover
 # ============================================================================
 
 st.markdown("---")
 
-st.markdown("""
-<div style='background: linear-gradient(135deg, #7A003E 0%, #4a0025 100%); 
-            padding: 2rem; 
-            border-radius: 15px; 
-            text-align: center; 
-            color: #FFFFFF;
-            margin-top: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);'>
-    
-    <p style='font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;'>
-        📧 Questions or Feedback?
-    </p>
-    
-    <p style='font-size: 1rem; margin: 0 0 1.5rem 0; opacity: 0.95;'>
-        Contact: <a href='mailto:vishnutalwar03@gmail.com' 
-                     style='color: #FFFFFF; text-decoration: underline; font-weight: 600;'>
-                     vishnutalwar03@gmail.com
-                  </a>
-    </p>
-    
-    <div style='border-top: 1px solid rgba(255,255,255,0.3); padding-top: 1rem; margin-top: 1rem;'>
-        <p style='font-size: 0.85rem; margin: 0 0 0.5rem 0; opacity: 0.8;'>
-            <strong>⚠️ Disclaimer:</strong> OttoPilot is an independent student project and is not officially affiliated with 
-            Otto-von-Guericke-Universität Magdeburg.
-        </p>
-        <p style='font-size: 0.85rem; margin: 0; opacity: 0.8;'>
-            This chatbot is developed for educational purposes. For official information, please visit 
-            <a href='https://www.ovgu.de' target='_blank' style='color: #FFFFFF; text-decoration: underline;'>
-                www.ovgu.de
-            </a>
-        </p>
-    </div>
-    
-    <p style='font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7; font-style: italic;'>
-        Developed by Vishnu Talwar | Powered by Google Gemini & LangChain
-    </p>
-</div>
-""", unsafe_allow_html=True)
+with st.popover("Contact Info"):
+    st.markdown("**Contact:** vishnutalwar03@gmail.com")
+    st.markdown("⚠️ *Independent project · Not affiliated with OVGU*")
+    st.markdown("*Visit [ovgu.de](https://www.ovgu.de) for official information*")
+    st.markdown("*Made by Vishnu Talwar*")
