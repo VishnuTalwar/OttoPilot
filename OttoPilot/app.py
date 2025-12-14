@@ -5,8 +5,6 @@ OttoPilot - OVGU Chatbot
 import streamlit as st
 import sys
 from pathlib import Path
-import base64
-from io import BytesIO
 
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
@@ -22,31 +20,10 @@ except ImportError as e:
 # Helper Functions
 # ============================================================================
 
-def get_portrait_base64():
-    """Get portrait image as base64 string"""
-    portrait_paths = [
-        "./assets/otto_potrait.jpg",
-        "assets/otto_portrait.jpg",
-        "otto_portrait.jpg",
-        Path(__file__).parent / "assets" / "otto_portrait.jpg",
-        Path(__file__).parent / "otto_portrait.jpg"
-    ]
-
-    for path in portrait_paths:
-        try:
-            from PIL import Image
-            img = Image.open(path)
-            # Resize to ensure consistent size
-            img = img.resize((100, 100), Image.Resampling.LANCZOS)
-            buffered = BytesIO()
-            img.save(buffered, format="JPEG")
-            img_str = base64.b64encode(buffered.getvalue()).decode()
-            return img_str
-        except:
-            continue
-
-    # Fallback: return None if no image found
-    return None
+def get_portrait_url():
+    """Get portrait image URL"""
+    # Direct URL to Otto von Guericke portrait
+    return "https://yt3.googleusercontent.com/t841PcRBYkvVjqiDjmR_SM_4HUttWQMyTUf0jSRLtBC3QJI6FdHh66P9d9N6ycjsy_UtOe4lxA=s900-c-k-c0x00ffffff-no-rj"
 
 
 # ============================================================================
@@ -311,34 +288,19 @@ if "sources_history" not in st.session_state:
 # Header with Integrated Portrait
 # ============================================================================
 
-portrait_base64 = get_portrait_base64()
+portrait_url = get_portrait_url()
 
-if portrait_base64:
-    # Portrait found - show integrated header with image
-    st.markdown(f"""
-    <div class="otto-header">
-        <div class="header-content">
-            <img src="data:image/jpeg;base64,{portrait_base64}" class="portrait-circle" alt="Otto von Guericke">
-            <div class="title-section">
-                <div class="otto-title">OttoPilot</div>
-                <div class="otto-subtitle">Powered by Gemini</div>
-            </div>
+st.markdown(f"""
+<div class="otto-header">
+    <div class="header-content">
+        <img src="{portrait_url}" class="portrait-circle" alt="Otto von Guericke">
+        <div class="title-section">
+            <div class="otto-title">OttoPilot</div>
+            <div class="otto-subtitle">Powered by Gemini</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
-else:
-    # No portrait - show header with placeholder
-    st.markdown("""
-    <div class="otto-header">
-        <div class="header-content">
-            <div class="portrait-placeholder">🎓</div>
-            <div class="title-section">
-                <div class="otto-title">OttoPilot</div>
-                <div class="otto-subtitle">Powered by Gemini</div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 
 # ============================================================================
@@ -439,13 +401,31 @@ if st.session_state.messages:
 
 
 # ============================================================================
-# Footer - Compact Popover
+# Footer 
 # ============================================================================
 
 st.markdown("---")
 
-with st.popover("Contact Info"):
-    st.markdown("**Contact:** vishnutalwar03@gmail.com")
-    st.markdown("⚠️ *Independent project · Not affiliated with OVGU*")
-    st.markdown("*Visit [ovgu.de](https://www.ovgu.de) for official information*")
-    st.markdown("*Made by Vishnu Talwar*")
+st.markdown("""
+<div style='background: linear-gradient(135deg, #7A003E 0%, #4a0025 100%); 
+            padding: 0.75rem 1rem; 
+            border-radius: 10px; 
+            text-align: right; 
+            color: #FFFFFF;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 0.75rem;
+            max-width: 450px;
+            margin-left: auto;'>
+    <p style='margin: 0; font-size: 0.75rem; color: #FFFFFF;'>
+        <strong>Contact:</strong> vishnutalwar03@gmail.com
+    </p>
+    <p style='margin: 0.3rem 0 0 0; font-size: 0.7rem; color: #FFFFFF; opacity: 0.85;'>
+        Independent project · Not affiliated with OVGU · 
+        <a href='https://www.ovgu.de' target='_blank' style='color: #FFFFFF; text-decoration: underline;'>Visit ovgu.de</a>
+    </p>
+    <p style='margin: 0.3rem 0 0 0; font-size: 0.65rem; color: #FFFFFF; opacity: 0.75; font-style: italic;'>
+        Made by Vishnu Talwar
+    </p>
+</div>
+""", unsafe_allow_html=True)
