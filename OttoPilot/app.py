@@ -25,7 +25,7 @@ except ImportError as e:
 def get_portrait_base64():
     """Get portrait image as base64 string"""
     portrait_paths = [
-        "/Users/deepaktalwar/Desktop/OttoPilot/assets/otto_potrait.jpg",
+        "./assets/otto_potrait.jpg",
         "assets/otto_portrait.jpg",
         "otto_portrait.jpg",
         Path(__file__).parent / "assets" / "otto_portrait.jpg",
